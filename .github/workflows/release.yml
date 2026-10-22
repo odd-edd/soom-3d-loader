@@ -1,5 +1,6 @@
 # Push a tag like v0.2.0 (after `npm run version:set -- 0.2.0`) to release.
-# iOS needs no step here: Swift Package Manager reads the tag directly.
+# For now only the web package is published (npm). iOS will need no step here: Swift Package
+# Manager reads the tag directly once the repo is public. Android publishing is not set up yet.
 name: Release
 
 on:
@@ -23,7 +24,8 @@ jobs:
       - run: npm test
       - name: Tag matches package version
         run: test "v$(node -p "require('./packages/web/package.json').version")" = "$GITHUB_REF_NAME"
-      - run: npm publish -w soom --access public --provenance
+      # npm provenance only works from public repositories, so add it once the repo is public.
+      - run: npm publish -w soom --access public ${{ github.event.repository.private && ' ' || '--provenance' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

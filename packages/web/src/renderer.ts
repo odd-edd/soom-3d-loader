@@ -121,11 +121,24 @@ export class Loader {
   private render(t: number): void {
     const { variant, count, size } = this.opts;
     const color = this.opts.color === "currentColor" && this.resolveColor ? this.resolveColor() : this.opts.color;
+    let dotVariant: Variant = "orbit";
     if (isShaderVariant(variant)) {
-      drawShaderFrame(this.ctx, variant, t, this.canvas.width, color, count / DEFAULTS.count);
-      return;
+      if (!shaderUnavailable) {
+        try {
+          drawShaderFrame(this.ctx, variant, t, this.canvas.width, color, count / DEFAULTS.count);
+          return;
+        } catch (error) {
+          // No WebGL (or a driver that rejects the shader): fall back to dots for good.
+          shaderUnavailable = true;
+          console.warn("soom: WebGL is unavailable, showing the orbit dots instead.", error);
+        }
+      }
+    } else {
+      dotVariant = variant;
     }
-    this.frame = computeFrame(variant, count, t, this.frame);
+    this.frame = computeFrame(dotVariant, count, t, this.frame);
     drawFrame(this.ctx, this.frame, size, color ?? "#000000");
   }
 }
+
+let shaderUnavailable = false;

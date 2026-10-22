@@ -1,8 +1,13 @@
 {
   "name": "soom",
   "version": "0.1.0",
-  "description": "Minimal 3D dot-sphere loading animations for the web.",
+  "description": "Minimal 3D loading animations for the web: dot and WebGL loaders in one custom element.",
   "license": "MIT",
+  "author": "Odd Edd",
+  "homepage": "https://github.com/odd-edd/soom#readme",
+  "bugs": {
+    "url": "https://github.com/odd-edd/soom/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

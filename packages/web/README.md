@@ -1,106 +1,109 @@
 # soom
 
-Minimal 3D dot-sphere loading animations for web, iOS, and Android.
-One spec, three native implementations, identical frames.
+Minimal 3D loading animations for the web. Drop in one tag, no dependencies, ~18 kB.
 
-Variants: `orbit` · `wave` · `morph` · `breathe` · `surf` · `helix` · `twist` · `chase` · `comet` · `bounce` · `pulse` · `beat` · `cube` · `trio` · `atom`
+- **15 dot loaders** drawn on a 2D canvas: spheres, rings, beads and atoms made of dots that rotate in 3D.
+- **14 shader loaders** drawn with WebGL: glossy glowing bodies and pale glass.
+- Works with any framework (it is a standard custom element), pauses when off screen,
+  respects reduced motion, and is announced to screen readers as a loading status.
 
-Web-only prototypes (WebGL shaders, not in SPEC yet), in two materials:
-
-- Glow (dark glossy body, blue-to-violet rim): `blob` (cube-to-sphere morph) ·
-  `twirl` (wringing column, like `twist`) · `strand` (double helix, like `helix`) ·
-  `moons` (moons orbiting a core) · `stack` (a deck of plates swinging in turn) ·
-  `bloom` (petals opening and closing) · `gyro` (nested spinning rings)
-- Glass (pale blue, flowing sheen): `bubble` (wobbling bubble with an orbiting arc) ·
-  `swell` (a swell running around the equator, like `surf`) · `drift` (droplets
-  parting and merging, like `breathe`) · `ripple` (rings spreading over a disc) ·
-  `halo` (beads travelling around a ring) · `ribbon` (a half-twisted band) ·
-  `jelly` (a bouncing, squashing jelly)
-
-Without `color` they use their own palette; with `color` they are tinted.
-For these, `count` sets complexity instead of dot count (180 = default look): more
-waves (`swell`), twists (`twirl`), turns (`strand`), droplets (`drift`), moons, plates,
-petals, rings, ripples, beads or half-twists, or finer wobble (`blob`, `bubble`, `jelly`).
-
-## Install and use
-
-### Web
+## Install
 
 ```bash
 npm install soom
 ```
 
+## Quick start
+
+```js
+import "soom/auto"; // registers <soom-loader>
+```
+
 ```html
-<script type="module">import "soom/auto";</script>
 <soom-loader variant="orbit" size="48"></soom-loader>
 ```
 
-Attributes: `variant`, `size` (px), `color` (defaults to `#000000`; `currentColor` follows the text color), `count`, `speed`, `label`.
-For frameworks, `new Loader(canvas, options)` is exported too.
+Without a bundler:
 
-### iOS (Swift Package Manager)
-
-Add `https://github.com/odd-edd/soom` as a package dependency.
-
-```swift
-import Soom
-
-SoomView(variant: .orbit)
-    .frame(width: 48, height: 48)
+```html
+<script type="module">
+  import "https://cdn.jsdelivr.net/npm/soom@0.1.0/dist/auto.js";
+</script>
+<soom-loader variant="atom" size="64"></soom-loader>
 ```
 
-UIKit: `SoomUIView(variant: .wave)`.
+## Attributes
 
-### Android (Jetpack Compose)
+| Attribute | Default | Meaning |
+|---|---|---|
+| `variant` | `orbit` | Which loader (see below) |
+| `size` | `48` | Width and height in CSS pixels |
+| `color` | `#000000` for dots, own palette for shaders | Any CSS color; `currentColor` follows the text color |
+| `count` | `180` | Dot loaders: number of dots. Shader loaders: complexity (more waves, twists, petals…) |
+| `speed` | `1` | Animation speed multiplier |
+| `label` | `Loading` | Accessible name |
 
-```kotlin
-Soom(modifier = Modifier.size(48.dp), variant = Variant.Orbit)
+## Variants
+
+**Dots** (2D canvas, any browser)
+
+`orbit` · `wave` · `morph` · `breathe` · `surf` · `helix` · `twist` · `chase` · `comet` ·
+`bounce` · `pulse` · `beat` · `cube` · `trio` · `atom`
+
+**Shaders** (WebGL; falls back to `orbit` dots if WebGL is unavailable)
+
+- Glow: `blob` · `twirl` · `strand` · `moons` · `stack` · `bloom` · `gyro`
+- Glass: `bubble` · `swell` · `drift` · `ripple` · `halo` · `ribbon` · `jelly`
+
+## Frameworks
+
+`<soom-loader>` is a custom element, so it works anywhere HTML does. Import `soom/auto` once
+(on the client), then use the tag.
+
+```jsx
+// React
+import "soom/auto";
+
+export function Spinner() {
+  return <soom-loader variant="chase" size="32" color="currentColor" />;
+}
 ```
 
-XML layouts: `io.github.oddedd.soom.SoomView`.
+In TypeScript + React, declare the tag once:
 
-## Repository layout
-
-```
-SPEC.md                 the math every platform implements
-presets/presets.json    single source of numeric constants
-spec/golden.json        reference frames all three cores must match
-packages/web/           npm package "soom" (TypeScript)
-Package.swift, ios/     Swift package "Soom" (SwiftUI)
-android/                Android library (Kotlin, Compose)
-playground/             local tuning page
-scripts/                code generation, golden frames, versioning
-```
-
-## Development
-
-```bash
-npm install
-npm run dev        # playground at http://localhost:5173
-npm test           # build web + check against golden frames
-swift test         # iOS core vs golden frames (needs Xcode)
-gradle -p android :soom:testDebugUnitTest
+```ts
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "soom-loader": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        variant?: string; size?: number | string; color?: string; count?: number | string; speed?: number | string; label?: string;
+      };
+    }
+  }
+}
 ```
 
-Changing behaviour:
+For server rendering, importing `soom` is safe; the element only starts drawing in the browser.
 
-1. Edit `presets/presets.json` and/or `SPEC.md`.
-2. `npm run gen` writes the constants into all three platforms.
-3. Update the web core, then `npm run golden` to regenerate reference frames.
-4. Port the change to Swift and Kotlin until their golden tests pass.
+## Canvas API
 
-## Releasing
+To draw into your own canvas instead of using the tag:
 
-All platforms share one version.
+```js
+import { Loader } from "soom";
 
-```bash
-npm run version:set -- 0.2.0
-git commit -am "Release 0.2.0"
-git tag v0.2.0 && git push --follow-tags
+const loader = new Loader(canvas, { variant: "comet", size: 64, color: "#7c5cff" });
+loader.update({ speed: 1.5 });
+loader.destroy();
 ```
 
-The tag publishes to npm and creates a GitHub release; Swift Package Manager picks up the tag directly.
+## Behaviour
+
+- Pauses when scrolled off screen or when the tab is hidden.
+- With "reduce motion" enabled in the OS, shows a single still frame.
+- Exposed as `role="status"` with an `aria-label` (default "Loading").
+- All shader loaders on a page share one WebGL context, so many loaders never hit the browser's context limit.
 
 ## License
 
-MIT
+MIT © Odd Edd
