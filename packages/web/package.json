@@ -1,0 +1,41 @@
+{
+  "name": "soom",
+  "version": "0.1.0",
+  "description": "Minimal 3D dot-sphere loading animations for the web.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./auto": {
+      "types": "./dist/auto.d.ts",
+      "import": "./dist/auto.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "./dist/auto.js"
+  ],
+  "keywords": [
+    "loader",
+    "spinner",
+    "loading",
+    "3d",
+    "animation",
+    "web-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odd-edd/soom.git",
+    "directory": "packages/web"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json"
+  }
+}

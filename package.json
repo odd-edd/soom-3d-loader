@@ -1,0 +1,19 @@
+{
+  "name": "soom-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "gen": "node scripts/gen-presets.mjs",
+    "build": "npm run gen && npm -w soom run build",
+    "dev": "npm run gen && vite playground",
+    "golden": "npm run build && node scripts/golden.mjs --write",
+    "test": "npm run build && node scripts/golden.mjs --check",
+    "version:set": "node scripts/set-version.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}
