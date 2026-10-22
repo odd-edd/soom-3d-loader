@@ -48,13 +48,13 @@ function kotlin() {
     out.push("    }");
     return out.join("\n");
   };
-  const parts = [header, "", "package io.github.oddedd.soom", "", "object Presets {", block("Defaults", presets.defaults)];
+  const parts = [header, "", "package io.github.oddedd.soom3dloader", "", "object Presets {", block("Defaults", presets.defaults)];
   for (const [name, o] of Object.entries(presets.variants)) parts.push(block(cap(name), o));
   parts.push("}", "");
   return parts.join("\n");
 }
 
 writeFileSync(root + "packages/web/src/presets.ts", ts());
-writeFileSync(root + "ios/Sources/Soom/Presets.swift", swift());
-writeFileSync(root + "android/soom/src/main/kotlin/io/github/oddedd/soom/Presets.kt", kotlin());
+writeFileSync(root + "ios/Sources/Soom3DLoader/Presets.swift", swift());
+writeFileSync(root + "android/soom-3d-loader/src/main/kotlin/io/github/oddedd/soom3dloader/Presets.kt", kotlin());
 console.log("presets generated for web, iOS, Android");

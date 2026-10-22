@@ -17,7 +17,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - name: Generated presets are committed
-        run: git diff --exit-code -- packages/web/src/presets.ts ios/Sources/Soom/Presets.swift android/soom/src/main/kotlin
+        run: git diff --exit-code -- packages/web/src/presets.ts ios/Sources/Soom3DLoader/Presets.swift android/soom-3d-loader/src/main/kotlin
 
   ios:
     runs-on: macos-15
@@ -37,4 +37,4 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.10.2"
-      - run: gradle -p android :soom:testDebugUnitTest :soom:assembleRelease
+      - run: gradle -p android :soom-3d-loader:testDebugUnitTest :soom-3d-loader:assembleRelease

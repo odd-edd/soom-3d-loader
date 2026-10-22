@@ -1,5 +1,5 @@
 {
-  "name": "soom-monorepo",
+  "name": "soom-3d-loader",
   "private": true,
   "workspaces": [
     "packages/*"

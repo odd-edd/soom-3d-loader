@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.oddedd.soom"
+    namespace = "io.github.oddedd.soom3dloader"
     compileSdk = 35
 
     defaultConfig {

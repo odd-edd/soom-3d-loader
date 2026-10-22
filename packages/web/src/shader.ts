@@ -424,7 +424,7 @@ class SharedGL {
 
   constructor() {
     const gl = this.canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false });
-    if (!gl) throw new Error("soom: WebGL is not available");
+    if (!gl) throw new Error("soom-3d-loader: WebGL is not available");
     this.gl = gl;
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -458,14 +458,14 @@ class SharedGL {
       const s = gl.createShader(type)!;
       gl.shaderSource(s, src);
       gl.compileShader(s);
-      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(`soom: ${gl.getShaderInfoLog(s)}`);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(`soom-3d-loader: ${gl.getShaderInfoLog(s)}`);
       return s;
     };
     const program = gl.createProgram()!;
     gl.attachShader(program, compile(gl.VERTEX_SHADER, VERTEX));
     gl.attachShader(program, compile(gl.FRAGMENT_SHADER, COMMON + SOURCES[variant]));
     gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(`soom: ${gl.getProgramInfoLog(program)}`);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(`soom-3d-loader: ${gl.getProgramInfoLog(program)}`);
     const loc = gl.getAttribLocation(program, "a_pos");
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);

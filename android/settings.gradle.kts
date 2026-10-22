@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "soom"
-include(":soom")
+rootProject.name = "soom-3d-loader"
+include(":soom-3d-loader")

@@ -1,4 +1,4 @@
-# soom
+# soom-3d-loader
 
 Minimal 3D loading animations for the web. Drop in one tag, no dependencies, ~18 kB.
 
@@ -16,11 +16,11 @@ npm install @odd-edd/soom-3d-loader
 ## Quick start
 
 ```js
-import "@odd-edd/soom-3d-loader/auto"; // registers <soom-loader>
+import "@odd-edd/soom-3d-loader/auto"; // registers <soom-3d-loader>
 ```
 
 ```html
-<soom-loader variant="orbit" size="48"></soom-loader>
+<soom-3d-loader variant="orbit" size="48"></soom-3d-loader>
 ```
 
 Without a bundler:
@@ -29,7 +29,7 @@ Without a bundler:
 <script type="module">
   import "https://cdn.jsdelivr.net/npm/@odd-edd/soom-3d-loader@0.1.0/dist/auto.js";
 </script>
-<soom-loader variant="atom" size="64"></soom-loader>
+<soom-3d-loader variant="atom" size="64"></soom-3d-loader>
 ```
 
 ## Attributes
@@ -57,7 +57,7 @@ Without a bundler:
 
 ## Frameworks
 
-`<soom-loader>` is a custom element, so it works anywhere HTML does. Import `@odd-edd/soom-3d-loader/auto` once
+`<soom-3d-loader>` is a custom element, so it works anywhere HTML does. Import `@odd-edd/soom-3d-loader/auto` once
 (on the client), then use the tag.
 
 ```jsx
@@ -65,7 +65,7 @@ Without a bundler:
 import "@odd-edd/soom-3d-loader/auto";
 
 export function Spinner() {
-  return <soom-loader variant="chase" size="32" color="currentColor" />;
+  return <soom-3d-loader variant="chase" size="32" color="currentColor" />;
 }
 ```
 
@@ -75,7 +75,7 @@ In TypeScript + React, declare the tag once:
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "soom-loader": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+      "soom-3d-loader": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
         variant?: string; size?: number | string; color?: string; count?: number | string; speed?: number | string; label?: string;
       };
     }

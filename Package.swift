@@ -4,17 +4,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "Soom",
+    name: "Soom3DLoader",
     platforms: [.iOS(.v15), .macOS(.v12)],
     products: [
-        .library(name: "Soom", targets: ["Soom"]),
+        .library(name: "Soom3DLoader", targets: ["Soom3DLoader"]),
     ],
     targets: [
-        .target(name: "Soom", path: "ios/Sources/Soom"),
+        .target(name: "Soom3DLoader", path: "ios/Sources/Soom3DLoader"),
         .testTarget(
-            name: "SoomTests",
-            dependencies: ["Soom"],
-            path: "ios/Tests/SoomTests"
+            name: "Soom3DLoaderTests",
+            dependencies: ["Soom3DLoader"],
+            path: "ios/Tests/Soom3DLoaderTests"
         ),
     ]
 )

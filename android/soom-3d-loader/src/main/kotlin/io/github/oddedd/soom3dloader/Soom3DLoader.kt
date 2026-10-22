@@ -1,4 +1,4 @@
-package io.github.oddedd.soom
+package io.github.oddedd.soom3dloader
 
 import android.content.Context
 import android.provider.Settings
@@ -31,7 +31,7 @@ private const val REDUCED_MOTION_T = 0.6
  * Dots are black unless [color] is given.
  */
 @Composable
-fun Soom(
+fun Soom3DLoader(
     modifier: Modifier = Modifier,
     variant: Variant = Variant.Orbit,
     color: Color = Color.Black,
@@ -85,8 +85,8 @@ fun Soom(
     }
 }
 
-/** View wrapper for XML layouts: `<io.github.oddedd.soom.SoomView .../>`. */
-class SoomView @JvmOverloads constructor(
+/** View wrapper for XML layouts: `<io.github.oddedd.soom3dloader.Soom3DLoaderView .../>`. */
+class Soom3DLoaderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -96,6 +96,6 @@ class SoomView @JvmOverloads constructor(
 
     @Composable
     override fun Content() {
-        Soom(variant = variant, color = color)
+        Soom3DLoader(variant = variant, color = color)
     }
 }

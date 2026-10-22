@@ -1,6 +1,6 @@
 // Pure frame math. Mirrors SPEC.md section by section; keep it in sync with
-// packages/web/src/core.ts and ios/Sources/Soom/Core.swift.
-package io.github.oddedd.soom
+// packages/web/src/core.ts and ios/Sources/Soom3DLoader/Core.swift.
+package io.github.oddedd.soom3dloader
 
 import kotlin.math.PI
 import kotlin.math.abs

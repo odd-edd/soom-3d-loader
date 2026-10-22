@@ -1,4 +1,4 @@
-# soom spec
+# soom-3d-loader spec
 
 Every platform (web, iOS, Android) implements this document exactly.
 The shader variants (`blob`, `bubble`, `swell`, `twirl`, `strand`, `drift`, `moons`,

@@ -1,4 +1,4 @@
-# soom
+# soom-3d-loader
 
 Minimal 3D dot-sphere loading animations for web, iOS, and Android.
 One spec, three native implementations, identical frames.
@@ -32,7 +32,7 @@ npm install @odd-edd/soom-3d-loader
 
 ```html
 <script type="module">import "@odd-edd/soom-3d-loader/auto";</script>
-<soom-loader variant="orbit" size="48"></soom-loader>
+<soom-3d-loader variant="orbit" size="48"></soom-3d-loader>
 ```
 
 Attributes: `variant`, `size` (px), `color` (defaults to `#000000`; `currentColor` follows the text color), `count`, `speed`, `label`.
@@ -40,24 +40,24 @@ For frameworks, `new Loader(canvas, options)` is exported too.
 
 ### iOS (Swift Package Manager)
 
-Add `https://github.com/odd-edd/soom` as a package dependency.
+Add `https://github.com/odd-edd/soom-3d-loader` as a package dependency.
 
 ```swift
-import Soom
+import Soom3DLoader
 
-SoomView(variant: .orbit)
+Soom3DLoaderView(variant: .orbit)
     .frame(width: 48, height: 48)
 ```
 
-UIKit: `SoomUIView(variant: .wave)`.
+UIKit: `Soom3DLoaderUIView(variant: .wave)`.
 
 ### Android (Jetpack Compose)
 
 ```kotlin
-Soom(modifier = Modifier.size(48.dp), variant = Variant.Orbit)
+Soom3DLoader(modifier = Modifier.size(48.dp), variant = Variant.Orbit)
 ```
 
-XML layouts: `io.github.oddedd.soom.SoomView`.
+XML layouts: `io.github.oddedd.soom3dloader.Soom3DLoaderView`.
 
 ## Repository layout
 
@@ -66,7 +66,7 @@ SPEC.md                 the math every platform implements
 presets/presets.json    single source of numeric constants
 spec/golden.json        reference frames all three cores must match
 packages/web/           npm package "@odd-edd/soom-3d-loader" (TypeScript)
-Package.swift, ios/     Swift package "Soom" (SwiftUI)
+Package.swift, ios/     Swift package "Soom3DLoader" (SwiftUI)
 android/                Android library (Kotlin, Compose)
 playground/             local tuning page
 scripts/                code generation, golden frames, versioning
@@ -79,7 +79,7 @@ npm install
 npm run dev        # playground at http://localhost:5173
 npm test           # build web + check against golden frames
 swift test         # iOS core vs golden frames (needs Xcode)
-gradle -p android :soom:testDebugUnitTest
+gradle -p android :soom-3d-loader:testDebugUnitTest
 ```
 
 Changing behaviour:

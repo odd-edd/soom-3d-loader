@@ -4,9 +4,9 @@
   "description": "Minimal 3D loading animations for the web: dot and WebGL loaders in one custom element.",
   "license": "MIT",
   "author": "Odd Edd",
-  "homepage": "https://github.com/odd-edd/soom#readme",
+  "homepage": "https://github.com/odd-edd/soom-3d-loader#readme",
   "bugs": {
-    "url": "https://github.com/odd-edd/soom/issues"
+    "url": "https://github.com/odd-edd/soom-3d-loader/issues"
   },
   "type": "module",
   "main": "./dist/index.js",
@@ -37,7 +37,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/odd-edd/soom.git",
+    "url": "git+https://github.com/odd-edd/soom-3d-loader.git",
     "directory": "packages/web"
   },
   "scripts": {

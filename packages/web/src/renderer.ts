@@ -47,7 +47,7 @@ export class Loader {
 
   constructor(private canvas: HTMLCanvasElement, options: LoaderOptions = {}, private resolveColor?: () => string) {
     const ctx = canvas.getContext("2d");
-    if (!ctx) throw new Error("soom: 2D canvas is not available");
+    if (!ctx) throw new Error("soom-3d-loader: 2D canvas is not available");
     this.ctx = ctx;
     this.opts = { variant: "orbit", size: 48, count: DEFAULTS.count, speed: DEFAULTS.speed, ...options };
     this.resize();
@@ -130,7 +130,7 @@ export class Loader {
         } catch (error) {
           // No WebGL (or a driver that rejects the shader): fall back to dots for good.
           shaderUnavailable = true;
-          console.warn("soom: WebGL is unavailable, showing the orbit dots instead.", error);
+          console.warn("soom-3d-loader: WebGL is unavailable, showing the orbit dots instead.", error);
         }
       }
     } else {

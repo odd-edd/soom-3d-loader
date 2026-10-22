@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import Soom
+@testable import Soom3DLoader
 
 /// Checks the Swift core against spec/golden.json, produced by the web core.
 struct GoldenTests {

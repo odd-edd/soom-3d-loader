@@ -1,10 +1,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// `SoomView(variant: .orbit)` draws a rotating dot sphere.
+/// `Soom3DLoaderView(variant: .orbit)` draws a rotating dot sphere.
 /// Size it with `.frame(width:height:)`; dots are black unless `color` is given.
 @available(iOS 15.0, macOS 12.0, *)
-public struct SoomView: View {
+public struct Soom3DLoaderView: View {
     private static let reducedMotionT = 0.6
 
     var variant: Variant
@@ -64,11 +64,11 @@ import UIKit
 
 /// UIKit wrapper for apps that are not on SwiftUI.
 @available(iOS 15.0, *)
-public final class SoomUIView: UIView {
-    private let host: UIHostingController<SoomView>
+public final class Soom3DLoaderUIView: UIView {
+    private let host: UIHostingController<Soom3DLoaderView>
 
     public init(variant: Variant = .orbit, color: UIColor? = nil) {
-        host = UIHostingController(rootView: SoomView(variant: variant, color: color.map(Color.init) ?? .black))
+        host = UIHostingController(rootView: Soom3DLoaderView(variant: variant, color: color.map(Color.init) ?? .black))
         super.init(frame: .zero)
         host.view.backgroundColor = .clear
         host.view.translatesAutoresizingMaskIntoConstraints = false

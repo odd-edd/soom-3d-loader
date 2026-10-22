@@ -1,4 +1,4 @@
-package io.github.oddedd.soom
+package io.github.oddedd.soom3dloader
 
 import java.io.File
 import kotlin.math.abs

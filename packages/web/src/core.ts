@@ -1,5 +1,5 @@
 // Pure frame math. Mirrors SPEC.md section by section; keep it in sync with
-// ios/Sources/Soom/Core.swift and android/.../Core.kt.
+// ios/Sources/Soom3DLoader/Core.swift and android/.../Core.kt.
 import { DEFAULTS, VARIANTS, type Variant } from "./presets.js";
 
 const GA = Math.PI * (3 - Math.sqrt(5));

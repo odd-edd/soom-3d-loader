@@ -8,9 +8,9 @@ const COLOR_REFRESH_MS = 500;
 const Base = (typeof HTMLElement === "undefined" ? class {} : HTMLElement) as typeof HTMLElement;
 
 /**
- * `<soom-loader variant="orbit" size="48" color="#000000"></soom-loader>`
+ * `<soom-3d-loader variant="orbit" size="48" color="#000000"></soom-3d-loader>`
  */
-export class SoomElement extends Base {
+export class Soom3DLoaderElement extends Base {
   static observedAttributes = [...ATTRS];
   private loader?: Loader;
   private canvas = document.createElement("canvas");
@@ -72,8 +72,8 @@ export class SoomElement extends Base {
   }
 }
 
-export function define(tag = "soom-loader"): void {
+export function define(tag = "soom-3d-loader"): void {
   if (typeof customElements !== "undefined" && !customElements.get(tag)) {
-    customElements.define(tag, class extends SoomElement {});
+    customElements.define(tag, class extends Soom3DLoaderElement {});
   }
 }
