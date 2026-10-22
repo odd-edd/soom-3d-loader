@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "gen": "node scripts/gen-presets.mjs",
-    "build": "npm run gen && npm -w @odd-edd/soom run build",
+    "build": "npm run gen && npm -w @odd-edd/soom-3d-loader run build",
     "dev": "npm run gen && vite playground",
     "golden": "npm run build && node scripts/golden.mjs --write",
     "test": "npm run build && node scripts/golden.mjs --check",

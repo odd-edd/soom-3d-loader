@@ -27,11 +27,11 @@ petals, rings, ripples, beads or half-twists, or finer wobble (`blob`, `bubble`,
 ### Web
 
 ```bash
-npm install @odd-edd/soom
+npm install @odd-edd/soom-3d-loader
 ```
 
 ```html
-<script type="module">import "@odd-edd/soom/auto";</script>
+<script type="module">import "@odd-edd/soom-3d-loader/auto";</script>
 <soom-loader variant="orbit" size="48"></soom-loader>
 ```
 
@@ -65,7 +65,7 @@ XML layouts: `io.github.oddedd.soom.SoomView`.
 SPEC.md                 the math every platform implements
 presets/presets.json    single source of numeric constants
 spec/golden.json        reference frames all three cores must match
-packages/web/           npm package "@odd-edd/soom" (TypeScript)
+packages/web/           npm package "@odd-edd/soom-3d-loader" (TypeScript)
 Package.swift, ios/     Swift package "Soom" (SwiftUI)
 android/                Android library (Kotlin, Compose)
 playground/             local tuning page

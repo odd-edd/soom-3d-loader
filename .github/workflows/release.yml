@@ -25,7 +25,7 @@ jobs:
       - name: Tag matches package version
         run: test "v$(node -p "require('./packages/web/package.json').version")" = "$GITHUB_REF_NAME"
       # npm provenance only works from public repositories, so add it once the repo is public.
-      - run: npm publish -w @odd-edd/soom --access public ${{ github.event.repository.private && ' ' || '--provenance' }}
+      - run: npm publish -w @odd-edd/soom-3d-loader --access public ${{ github.event.repository.private && ' ' || '--provenance' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
