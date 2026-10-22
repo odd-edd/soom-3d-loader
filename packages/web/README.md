@@ -10,13 +10,13 @@ Minimal 3D loading animations for the web. Drop in one tag, no dependencies, ~18
 ## Install
 
 ```bash
-npm install soom
+npm install @odd-edd/soom
 ```
 
 ## Quick start
 
 ```js
-import "soom/auto"; // registers <soom-loader>
+import "@odd-edd/soom/auto"; // registers <soom-loader>
 ```
 
 ```html
@@ -27,7 +27,7 @@ Without a bundler:
 
 ```html
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/soom@0.1.0/dist/auto.js";
+  import "https://cdn.jsdelivr.net/npm/@odd-edd/soom@0.1.0/dist/auto.js";
 </script>
 <soom-loader variant="atom" size="64"></soom-loader>
 ```
@@ -57,12 +57,12 @@ Without a bundler:
 
 ## Frameworks
 
-`<soom-loader>` is a custom element, so it works anywhere HTML does. Import `soom/auto` once
+`<soom-loader>` is a custom element, so it works anywhere HTML does. Import `@odd-edd/soom/auto` once
 (on the client), then use the tag.
 
 ```jsx
 // React
-import "soom/auto";
+import "@odd-edd/soom/auto";
 
 export function Spinner() {
   return <soom-loader variant="chase" size="32" color="currentColor" />;
@@ -83,14 +83,14 @@ declare global {
 }
 ```
 
-For server rendering, importing `soom` is safe; the element only starts drawing in the browser.
+For server rendering, importing `@odd-edd/soom` is safe; the element only starts drawing in the browser.
 
 ## Canvas API
 
 To draw into your own canvas instead of using the tag:
 
 ```js
-import { Loader } from "soom";
+import { Loader } from "@odd-edd/soom";
 
 const loader = new Loader(canvas, { variant: "comet", size: 64, color: "#7c5cff" });
 loader.update({ speed: 1.5 });
