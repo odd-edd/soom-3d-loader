@@ -1,5 +1,5 @@
 {
-  "name": "@odd-edd/soom-3d-loader",
+  "name": "@oddedd/soom-3d-loader",
   "version": "0.1.0",
   "description": "Minimal 3D loading animations for the web: dot and WebGL loaders in one custom element.",
   "license": "MIT",

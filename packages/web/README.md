@@ -10,13 +10,13 @@ Minimal 3D loading animations for the web. Drop in one tag, no dependencies, ~18
 ## Install
 
 ```bash
-npm install @odd-edd/soom-3d-loader
+npm install @oddedd/soom-3d-loader
 ```
 
 ## Quick start
 
 ```js
-import "@odd-edd/soom-3d-loader/auto"; // registers <soom-3d-loader>
+import "@oddedd/soom-3d-loader/auto"; // registers <soom-3d-loader>
 ```
 
 ```html
@@ -27,7 +27,7 @@ Without a bundler:
 
 ```html
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@odd-edd/soom-3d-loader@0.1.0/dist/auto.js";
+  import "https://cdn.jsdelivr.net/npm/@oddedd/soom-3d-loader@0.1.0/dist/auto.js";
 </script>
 <soom-3d-loader variant="atom" size="64"></soom-3d-loader>
 ```
@@ -57,12 +57,12 @@ Without a bundler:
 
 ## Frameworks
 
-`<soom-3d-loader>` is a custom element, so it works anywhere HTML does. Import `@odd-edd/soom-3d-loader/auto` once
+`<soom-3d-loader>` is a custom element, so it works anywhere HTML does. Import `@oddedd/soom-3d-loader/auto` once
 (on the client), then use the tag.
 
 ```jsx
 // React
-import "@odd-edd/soom-3d-loader/auto";
+import "@oddedd/soom-3d-loader/auto";
 
 export function Spinner() {
   return <soom-3d-loader variant="chase" size="32" color="currentColor" />;
@@ -83,14 +83,14 @@ declare global {
 }
 ```
 
-For server rendering, importing `@odd-edd/soom-3d-loader` is safe; the element only starts drawing in the browser.
+For server rendering, importing `@oddedd/soom-3d-loader` is safe; the element only starts drawing in the browser.
 
 ## Canvas API
 
 To draw into your own canvas instead of using the tag:
 
 ```js
-import { Loader } from "@odd-edd/soom-3d-loader";
+import { Loader } from "@oddedd/soom-3d-loader";
 
 const loader = new Loader(canvas, { variant: "comet", size: 64, color: "#7c5cff" });
 loader.update({ speed: 1.5 });
