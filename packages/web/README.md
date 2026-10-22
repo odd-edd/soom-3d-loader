@@ -27,7 +27,7 @@ Without a bundler:
 
 ```html
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@oddedd/soom-3d-loader@0.1.0/dist/auto.js";
+  import "https://cdn.jsdelivr.net/npm/@oddedd/soom-3d-loader@0.1.1/dist/auto.js";
 </script>
 <soom-3d-loader variant="atom" size="64"></soom-3d-loader>
 ```
@@ -55,35 +55,38 @@ Without a bundler:
 - Glow: `blob` · `twirl` · `strand` · `moons` · `stack` · `bloom` · `gyro`
 - Glass: `bubble` · `swell` · `drift` · `ripple` · `halo` · `ribbon` · `jelly`
 
-## Frameworks
+## React and Next.js
 
-`<soom-3d-loader>` is a custom element, so it works anywhere HTML does. Import `@oddedd/soom-3d-loader/auto` once
-(on the client), then use the tag.
+Use the React component. It registers the element, types its props, and is marked
+`"use client"`, so it works straight from Next.js server components.
 
-```jsx
-// React
-import "@oddedd/soom-3d-loader/auto";
+```tsx
+import { Soom3DLoader } from "@oddedd/soom-3d-loader/react";
+
+export default function Page() {
+  return <Soom3DLoader variant="chase" size={32} color="currentColor" />;
+}
+```
+
+Prefer the raw tag? Importing the React entry once also types `<soom-3d-loader>` in JSX:
+
+```tsx
+"use client";
+import "@oddedd/soom-3d-loader/react";
 
 export function Spinner() {
-  return <soom-3d-loader variant="chase" size="32" color="currentColor" />;
+  return <soom-3d-loader variant="atom" size={48} />;
 }
 ```
 
-In TypeScript + React, declare the tag once:
+Needs React 18 or later; tested with React 19.2 and Next.js 16 (dev, production build and
+server rendering, with no hydration warnings).
 
-```ts
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "soom-3d-loader": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        variant?: string; size?: number | string; color?: string; count?: number | string; speed?: number | string; label?: string;
-      };
-    }
-  }
-}
-```
+## Other frameworks
 
-For server rendering, importing `@oddedd/soom-3d-loader` is safe; the element only starts drawing in the browser.
+`<soom-3d-loader>` is a standard custom element, so it works anywhere HTML does (Vue, Svelte,
+Angular, plain HTML). Import `@oddedd/soom-3d-loader/auto` once on the client, then use the tag.
+Importing the package during server rendering is safe; drawing starts in the browser.
 
 ## Canvas API
 
@@ -101,7 +104,8 @@ loader.destroy();
 
 - Pauses when scrolled off screen or when the tab is hidden.
 - With "reduce motion" enabled in the OS, shows a single still frame.
-- Exposed as `role="status"` with an `aria-label` (default "Loading").
+- Announced as a loading status (`role="status"`, label "Loading" by default), set through
+  `ElementInternals` so the element's own attributes stay untouched for server rendering.
 - All shader loaders on a page share one WebGL context, so many loaders never hit the browser's context limit.
 
 ## License

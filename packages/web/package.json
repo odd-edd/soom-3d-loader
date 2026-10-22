@@ -1,6 +1,6 @@
 {
   "name": "@oddedd/soom-3d-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Minimal 3D loading animations for the web: dot and WebGL loaders in one custom element.",
   "license": "MIT",
   "author": "Odd Edd",
@@ -19,13 +19,18 @@
     "./auto": {
       "types": "./dist/auto.d.ts",
       "import": "./dist/auto.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
     }
   },
   "files": [
     "dist"
   ],
   "sideEffects": [
-    "./dist/auto.js"
+    "./dist/auto.js",
+    "./dist/react.js"
   ],
   "keywords": [
     "loader",
@@ -33,7 +38,9 @@
     "loading",
     "3d",
     "animation",
-    "web-component"
+    "web-component",
+    "react",
+    "nextjs"
   ],
   "repository": {
     "type": "git",
@@ -43,5 +50,13 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   }
 }

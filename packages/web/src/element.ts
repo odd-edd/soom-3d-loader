@@ -16,6 +16,9 @@ export class Soom3DLoaderElement extends Base {
   private canvas = document.createElement("canvas");
   private cachedColor = "";
   private colorStamp = 0;
+  // ARIA set through ElementInternals leaves the element's attributes untouched, so
+  // server-rendered markup (React/Next.js hydration) still matches what the client renders.
+  private internals?: ElementInternals;
 
   constructor() {
     super();
@@ -24,10 +27,14 @@ export class Soom3DLoaderElement extends Base {
     style.textContent = ":host{display:inline-block;line-height:0;vertical-align:middle}canvas{display:block}";
     this.canvas.setAttribute("aria-hidden", "true");
     root.append(style, this.canvas);
+    const internals = this.attachInternals?.();
+    if (internals && "role" in internals) this.internals = internals;
   }
 
   connectedCallback(): void {
-    if (!this.hasAttribute("role")) this.setAttribute("role", "status");
+    if (this.internals) this.internals.role = "status";
+    // Older browsers without ARIA on ElementInternals fall back to attributes.
+    else if (!this.hasAttribute("role")) this.setAttribute("role", "status");
     this.syncLabel();
     this.loader ??= new Loader(this.canvas, this.readOptions(), () => this.currentColor());
   }
@@ -43,7 +50,9 @@ export class Soom3DLoaderElement extends Base {
   }
 
   private syncLabel(): void {
-    this.setAttribute("aria-label", this.getAttribute("label") ?? "Loading");
+    const label = this.getAttribute("label") ?? "Loading";
+    if (this.internals) this.internals.ariaLabel = label;
+    else this.setAttribute("aria-label", label);
   }
 
   private readOptions() {
